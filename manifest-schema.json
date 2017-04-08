@@ -65,7 +65,8 @@
       "type": "string",
       "description": "internal only",
       "minLength": 1,
-      "format": "relative-path"
+      "format": "relative-path",
+      "maxFileSize": 524288
     },
     "homepage_url": {
       "type": "object",

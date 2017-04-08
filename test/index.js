@@ -125,6 +125,43 @@ describe('validator', () => {
     assert(actual.errors[1].keyword === 'format');
     assert(actual.errors[2].keyword === 'anyOf');
   });
+
+  describe('maxFileSize', () => {
+    it('valid file size', () => {
+      let called = 0;
+      const actual = validator(json({
+      }), {
+        maxFileSize(schema, data) {
+          assert(schema === 524288);
+          assert(data === 'image/icon.png');
+          called++;
+          return true;
+        },
+      });
+      assert(called === 1);
+      assert(actual.valid === true);
+    });
+
+    it('invalid file size', () => {
+      const actual = validator(json({
+      }), {
+        maxFileSize(schema, data) {
+          return false;
+        },
+      });
+      assert(actual.valid === false);
+      assert(actual.errors.length === 1);
+      assert.deepEqual(actual.errors[0], {
+        dataPath: '.icon',
+        keyword: 'maxFileSize',
+        message: 'should pass "maxFileSize" keyword validation',
+        params: {
+          keyword: 'maxFileSize',
+        },
+        schemaPath: '#/properties/icon/maxFileSize',
+      });
+    });
+  });
 });
 
 /**

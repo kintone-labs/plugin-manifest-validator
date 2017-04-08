@@ -11,9 +11,13 @@ const validateUrl = require('./src/validate-https-url');
  */
 module.exports = function(json, options) {
   options = options || {};
-  let relativePath = str => true;
-  if (options.relativePath) {
+  let relativePath = () => true;
+  let maxFileSize = () => true;
+  if (typeof options.relativePath === 'function') {
     relativePath = options.relativePath;
+  }
+  if (typeof options.maxFileSize === 'function') {
+    maxFileSize = options.maxFileSize;
   }
   const ajv = new Ajv({
     allErrors: true,
@@ -25,6 +29,17 @@ module.exports = function(json, options) {
       'relative-path': relativePath,
     },
   });
+
+  ajv.addKeyword('maxFileSize', {
+    validate(schema, data) {
+      // schema: max file size in bytes
+      // data: path to the file
+      return maxFileSize(schema, data);
+    },
+    // TODO: generate custom error message
+    errors: false,
+  });
+
   const validate = ajv.compile(jsonSchema);
   const valid = validate(json);
   return {valid: valid, errors: transformErrors(validate.errors)};
