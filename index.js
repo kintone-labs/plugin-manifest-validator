@@ -1,6 +1,7 @@
 'use strict';
 
 const Ajv = require('ajv');
+const bytes = require('bytes');
 const jsonSchema = require('./manifest-schema.json');
 const validateUrl = require('./src/validate-https-url');
 
@@ -32,9 +33,9 @@ module.exports = function(json, options) {
 
   ajv.addKeyword('maxFileSize', {
     validate(schema, data) {
-      // schema: max file size in bytes
+      // schema: max file size like "512KB" or 123 (in bytes)
       // data: path to the file
-      return maxFileSize(schema, data);
+      return maxFileSize(bytes.parse(schema), data);
     },
     // TODO: generate custom error message
     errors: false,

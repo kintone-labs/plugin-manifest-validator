@@ -131,9 +131,9 @@ describe('validator', () => {
       let called = 0;
       const actual = validator(json({
       }), {
-        maxFileSize(schema, data) {
-          assert(schema === 524288);
-          assert(data === 'image/icon.png');
+        maxFileSize(maxFileSizeInBytes, path) {
+          assert(maxFileSizeInBytes === 524288);
+          assert(path === 'image/icon.png');
           called++;
           return true;
         },
@@ -145,7 +145,7 @@ describe('validator', () => {
     it('invalid file size', () => {
       const actual = validator(json({
       }), {
-        maxFileSize(schema, data) {
+        maxFileSize(maxFileSizeInBytes, path) {
           return false;
         },
       });
