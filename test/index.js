@@ -154,9 +154,9 @@ describe('validator', () => {
       assert.deepEqual(actual.errors[0], {
         dataPath: '.icon',
         keyword: 'maxFileSize',
-        message: 'should pass "maxFileSize" keyword validation',
+        message: 'file size should be <= 512KB',
         params: {
-          keyword: 'maxFileSize',
+          limit: 524288,
         },
         schemaPath: '#/properties/icon/maxFileSize',
       });

@@ -32,13 +32,22 @@ module.exports = function(json, options) {
   });
 
   ajv.addKeyword('maxFileSize', {
-    validate(schema, data) {
+    validate: function validateMaxFileSize(schema, data) {
       // schema: max file size like "512KB" or 123 (in bytes)
       // data: path to the file
-      return maxFileSize(bytes.parse(schema), data);
+      const maxBytes = bytes.parse(schema);
+      const valid = maxFileSize(maxBytes, data);
+      if (!valid) {
+        validateMaxFileSize.errors = [{
+          keyword: 'maxFileSize',
+          message: `file size should be <= ${schema}`,
+          params: {
+            limit: maxBytes,
+          },
+        }];
+      }
+      return valid;
     },
-    // TODO: generate custom error message
-    errors: false,
   });
 
   const validate = ajv.compile(jsonSchema);
