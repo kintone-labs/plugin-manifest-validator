@@ -1,6 +1,7 @@
 'use strict';
 
 const Ajv = require('ajv');
+const v4metaSchema = require('ajv/lib/refs/json-schema-draft-04.json');
 const bytes = require('bytes');
 const jsonSchema = require('./manifest-schema.json');
 const validateUrl = require('./src/validate-https-url');
@@ -25,11 +26,18 @@ module.exports = function(json, options) {
     unknownFormats: true,
     errorDataPath: 'property',
     formats: {
-      url: str => validateUrl(str, true),
       'https-url': str => validateUrl(str),
       'relative-path': relativePath,
     },
   });
+
+  // Using draft-04 schemas
+  // https://github.com/epoberezkin/ajv/releases/tag/5.0.0
+  ajv.addMetaSchema(v4metaSchema);
+  ajv._opts.defaultMeta = v4metaSchema.id;
+  ajv.removeKeyword('propertyNames');
+  ajv.removeKeyword('contains');
+  ajv.removeKeyword('const');
 
   ajv.addKeyword('maxFileSize', {
     validate: function validateMaxFileSize(schema, data) {
