@@ -21,7 +21,7 @@
     "bytes": "^2.5.0"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
+    "eslint": "^4.0.0",
     "eslint-config-teppeis": "^5.3.0",
     "intelli-espower-loader": "^1.0.1",
     "json-schema-to-typescript": "^4.2.0",
