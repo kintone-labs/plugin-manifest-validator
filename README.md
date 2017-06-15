@@ -1,6 +1,8 @@
 kintone-plugin-manifest-validator
 ====
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/teppeis/kintone-plugin-manifest-validator.svg)](https://greenkeeper.io/)
+
 Validate `manifest.json` of kintone plugin. Used in [kintone-plugin-packer](https://github.com/teppeis/kintone-plugin-packer).
 
 [![npm version][npm-image]][npm-url]
