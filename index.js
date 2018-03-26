@@ -52,13 +52,15 @@ module.exports = function(json, options) {
       const maxBytes = bytes.parse(schema);
       const valid = maxFileSize(maxBytes, data);
       if (!valid) {
-        validateMaxFileSize.errors = [{
-          keyword: 'maxFileSize',
-          message: `file size should be <= ${schema}`,
-          params: {
-            limit: maxBytes,
+        validateMaxFileSize.errors = [
+          {
+            keyword: 'maxFileSize',
+            message: `file size should be <= ${schema}`,
+            params: {
+              limit: maxBytes,
+            },
           },
-        }];
+        ];
       }
       return valid;
     },
