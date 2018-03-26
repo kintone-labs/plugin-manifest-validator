@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "gen-dts": "node script/generate-dts.js",
-    "lint": "eslint index.js src test",
+    "lint": "eslint index.js src test script",
     "mocha": "mocha test --require intelli-espower-loader",
     "test": "run-s lint mocha test:dts",
     "test:dts": "tsc --noEmit --strict test/manifest-schema.ts"
