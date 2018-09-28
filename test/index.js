@@ -9,13 +9,13 @@ describe("validator", () => {
   });
 
   it("minimal valid JSON", () => {
-    assert.deepEqual(validator(json()), { valid: true, errors: null });
+    assert.deepStrictEqual(validator(json()), { valid: true, errors: null });
   });
 
   it("missing property", () => {
     const manifestJson = json();
     delete manifestJson.version;
-    assert.deepEqual(validator(manifestJson), {
+    assert.deepStrictEqual(validator(manifestJson), {
       valid: false,
       errors: [
         {
@@ -32,7 +32,7 @@ describe("validator", () => {
   });
 
   it("invalid type", () => {
-    assert.deepEqual(validator(json({ version: "1" })), {
+    assert.deepStrictEqual(validator(json({ version: "1" })), {
       valid: false,
       errors: [
         {
@@ -49,7 +49,7 @@ describe("validator", () => {
   });
 
   it("integer is out of range", () => {
-    assert.deepEqual(validator(json({ version: 0 })), {
+    assert.deepStrictEqual(validator(json({ version: 0 })), {
       valid: false,
       errors: [
         {
@@ -68,7 +68,7 @@ describe("validator", () => {
   });
 
   it("invalid enum value", () => {
-    assert.deepEqual(validator(json({ type: "FOO" })), {
+    assert.deepStrictEqual(validator(json({ type: "FOO" })), {
       valid: false,
       errors: [
         {
@@ -85,7 +85,7 @@ describe("validator", () => {
   });
 
   it("no English description", () => {
-    assert.deepEqual(validator(json({ description: {} })), {
+    assert.deepStrictEqual(validator(json({ description: {} })), {
       valid: false,
       errors: [
         {
@@ -160,7 +160,7 @@ describe("validator", () => {
       });
       assert(actual.valid === false);
       assert(actual.errors.length === 1);
-      assert.deepEqual(actual.errors[0], {
+      assert.deepStrictEqual(actual.errors[0], {
         dataPath: ".icon",
         keyword: "maxFileSize",
         message: "file size should be <= 512KB",
