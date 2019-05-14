@@ -69,7 +69,7 @@
       "description": "internal only",
       "minLength": 1,
       "format": "relative-path",
-      "maxFileSize": "512KB"
+      "maxFileSize": "20MB"
     },
     "homepage_url": {
       "type": "object",
@@ -109,6 +109,9 @@
       "additionalProperties": false,
       "properties": {
         "js": {
+          "$ref": "#/definitions/resources"
+        },
+        "css":{
           "$ref": "#/definitions/resources"
         }
       }
@@ -159,7 +162,7 @@
           "format": "https-url"
         }, {
           "format": "relative-path",
-          "maxFileSize": "512KB"
+          "maxFileSize": "20MB"
         }],
         "maxItems": 30
       }
