@@ -1,11 +1,11 @@
-name: Node CI
+name: Node CI on windows
 
 on: [push]
 
 jobs:
-  build:
+  test:
 
-    runs-on: ubuntu-18.04
+    runs-on: windows-2019
 
     strategy:
       matrix:
