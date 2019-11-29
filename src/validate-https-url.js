@@ -6,10 +6,7 @@
  * @return {boolean}
  */
 function validateHttpsUrl(str, opt_allowHttp) {
-  if (opt_allowHttp) {
-    return /^https?:/.test(str);
-  }
-  return /^https:/.test(str);
+  return opt_allowHttp ? /^https?:/.test(str) : /^https:/.test(str);
 }
 
 module.exports = validateHttpsUrl;
