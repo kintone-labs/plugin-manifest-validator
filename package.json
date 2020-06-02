@@ -35,7 +35,7 @@
     "power-assert": "^1.6.1",
     "prettier": "1.19.1",
     "standard-version": "^8.0.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.3"
   },
   "homepage": "https://github.com/kintone/plugin-manifest-validator#readme",
   "repository": {
