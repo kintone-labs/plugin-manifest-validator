@@ -1,6 +1,12 @@
 @kintone/plugin-manifest-validator
 ====
 
+## :warning::warning: This project has migrated to [kintone/js-sdk](https://github.com/kintone/js-sdk/tree/master/packages/plugin-manifest-validator). :warning::warning:
+
+**We keep maintaining `@kintone/plugin-manifest-validator` on [kintone/js-sdk](https://github.com/kintone/js-sdk/tree/master/packages/plugin-manifest-validator). :rocket::rocket:**
+
+<!--
+
 Validate `manifest.json` of kintone plugin. Used in [@kintone/plugin-packer](https://github.com/kintone/plugin-packer).
 
 [![npm version][npm-image]][npm-url]
@@ -72,3 +78,5 @@ MIT License
 [deps-url]: https://david-dm.org/kintone/plugin-manifest-validator
 [node-version]: https://img.shields.io/badge/Node.js%20support-v6,v8,v10-brightgreen.svg
 [license]: https://img.shields.io/npm/l/@kintone/plugin-manifest-validator.svg
+
+-->
